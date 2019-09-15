@@ -20,7 +20,7 @@ async def on_ready():
 async def on_message(message):
     # don't respond to ourselves
     if message.author == self.user:
-    return
+        return
 
     if message.content.startswith('!test'):        
         await message.channel.send('hello world!')
