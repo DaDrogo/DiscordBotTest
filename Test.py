@@ -3,12 +3,10 @@ import random
 import json
 from discord.ext import commands
 
-
+#import TOKEN from json
 with open('secrets.json', 'r') as myfile:
     data=myfile.read()
-
 obj = json.loads(data)
-
 TOKEN=obj['secret_token']
 
 client = commands.Bot(command_prefix='test')
@@ -18,8 +16,6 @@ rnd = random.randint(1,1000)
 async def on_ready():
     print('bot is rdy.')
     
-
-
 @client.event
 async def on_message(message):
     if message.content.startswith('!test'):        
@@ -44,7 +40,7 @@ async def on_message(message):
             return m.content == 'hello' and m.channel == channel
 
         msg = await client.wait_for('message',check=check)
-        await channel.send('Hello{.author}!'.format(msg))
+        await channel.send('Hello {.author} !'.format(msg))
         
     
 client.run(TOKEN)
