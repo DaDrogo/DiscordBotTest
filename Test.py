@@ -1,8 +1,17 @@
 import discord
 import random
+import json
 from discord.ext import commands
 
-TOKEN=''
+
+# read file
+with open('secrets.json', 'r') as myfile:
+    data=myfile.read()
+# parse file
+obj = json.loads(data)
+
+TOKEN=obj['secret_token']
+
 client = commands.Bot(command_prefix='test')
 rnd = random.randint(1,1000)
 
