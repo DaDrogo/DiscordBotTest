@@ -18,6 +18,10 @@ async def on_ready():
     
 @client.event
 async def on_message(message):
+    # don't respond to ourselves
+    if message.author == self.user:
+    return
+
     if message.content.startswith('!test'):        
         await message.channel.send('hello world!')
         await message.channel.send('hello world!')
