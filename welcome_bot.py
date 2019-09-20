@@ -3,7 +3,7 @@ import random
 import json
 from discord.ext import commands
 
-#import TOKEN from json
+#import TOKEN from json file
 with open('secrets.json', 'r') as myfile:
     data=myfile.read()
 obj = json.loads(data)
@@ -14,6 +14,7 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
 
+
     async def on_message(self, message):
         # don't respond to ourselves
         if message.author == self.user:
@@ -21,6 +22,16 @@ class MyClient(discord.Client):
 
         if message.content == 'ping':
             await message.channel.send('pong')
+
+    # Send Welcome-message, still hardcoded TODO
+    async def on_member_join(self, member):
+        for channel in client.guilds[0].channels:
+            if channel.name == 'area51':
+                welcome_channel = channel
+
+        await welcome_channel.send('Willkommen auf dem Server '+ member.mention + ' !')
+
+
 
 client = MyClient()
 client.run(TOKEN)
