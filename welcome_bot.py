@@ -25,10 +25,7 @@ class MyClient(discord.Client):
 
     # Send Welcome-message, still hardcoded TODO
     async def on_member_join(self, member):
-        for channel in client.guilds[0].channels:
-            if channel.name == 'area51':
-                welcome_channel = channel
-
+        welcome_channel = client.guilds[0].system_channel
         await welcome_channel.send('Willkommen auf dem Server '+ member.mention + ' !')
 
 
